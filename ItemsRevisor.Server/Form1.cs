@@ -29,12 +29,12 @@ namespace ItemsRevisor.Server
         private void Form1_Load(object sender, EventArgs e)
         {
             log.DebugWriteLine("Form loading");
+            
             //Wait load db
             //launch socket server
             //handle connections
             //profit bruh
         }
-
         private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Звоните Алихану");
@@ -96,8 +96,27 @@ namespace ItemsRevisor.Server
             {
                 _DBname = openFileDialog1.FileName;
                 ConnectDB(_DBname);
-                //...
+                
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           var cmd = Database.command;
+           cmd.CommandText = $"INSERT INTO Items (Name, Count, Location) VALUES ('{textBox_create_name.Text}', {int.Parse(textBox_create_count.Text)}, '{comboBox_creation.Text}')";
+           try {
+            int number = cmd.ExecuteNonQuery();
+                if (number > 0) { log.DebugWriteLine("Created item: " + textBox_create_name.Text); }
+            }
+            catch (Exception ex)
+            {
+                log.DebugWriteLine("Error : " + ex.ToString());
+            }
+        }
+
+        public void RefreshLists()
+        {
+
         }
     }
 }
