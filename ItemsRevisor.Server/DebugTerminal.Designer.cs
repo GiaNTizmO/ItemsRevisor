@@ -81,7 +81,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Name = "DebugTerminal";
-            this.Text = "DebugTerminal";
+            this.Text = "ItemsRevisor: Консоль отладки";
             this.ResumeLayout(false);
             this.PerformLayout();
 

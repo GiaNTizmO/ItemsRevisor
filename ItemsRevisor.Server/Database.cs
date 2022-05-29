@@ -16,10 +16,11 @@ namespace ItemsRevisor.Server
         public static bool _isDBInitialized = false;
         public static bool _isDBFirstTimeUsed = false;
         public static SQLiteCommand command;
+        public static SQLiteConnection connection;
 
         public static void Setup(string dbname)
         {
-            var connection = new SQLiteConnection(connectionString + dbname);
+            connection = new SQLiteConnection(connectionString + dbname);
             if (!File.Exists(dbname))
             {
                 log.DebugWriteLine("First time dbusing!");
@@ -29,7 +30,7 @@ namespace ItemsRevisor.Server
             {
                 connection.Open();
                 log.DebugWriteLine("SQLite connection etablished with: " + dbname);
-                Form1.ActiveForm.Text = "ItemsRevisor - БД: " + dbname;
+                Form1.ActiveForm.Text = "ItemsRevisor Сервер - БД:" + dbname;
                 command = new SQLiteCommand();
                 command.Connection = connection;
 
@@ -44,5 +45,7 @@ namespace ItemsRevisor.Server
                 log.DebugWriteLine("SQLite connection exception : " + ex.ToString());
             }
         }
+       
+        
     }
 }
